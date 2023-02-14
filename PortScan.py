@@ -2,6 +2,15 @@ import argparse
 import socket
 from datetime import datetime
 
+    # RED    = '\33[31m'
+    # GREEN  = '\33[32m'
+    # YELLOW = '\33[33m'
+    # BLUE   = '\33[34m'
+    # VIOLET = '\33[35m'
+    # BEIGE  = '\33[36m'
+    # WHITE  = '\33[37m'
+    # END      = '\33[0m'
+
 def port_scan(host,port,timeout):
     try:
         sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -35,14 +44,14 @@ def main():
         
         for port in ports:
             if port_scan(host,port,timeout):
-                print("port",port,"is open")
+                print(f"port \33[33m {port} \33[0m \33[32mis open\33[0m")
     else:
         Open_ports = []
         for port in ports:
             if port_scan(host,port,timeout):
                 Open_ports.append(port)
         for port in Open_ports:
-            print("port",port,"is open")
+            print("port \33[33m {port} \33[0m \33[32mis open\33[0m")
 
     print("Scanning finished in",datetime.now()-start_time)
 
